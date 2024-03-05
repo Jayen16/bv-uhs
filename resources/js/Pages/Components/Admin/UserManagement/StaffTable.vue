@@ -2,7 +2,7 @@
 import AuthenticatedLayout from "@/Layouts/Authenticated.vue";
 import Modal from "@/Components/Modal.vue";
 import Button from "@/Components/Button.vue";
-import LaboratoryStaffModal from "@/Pages/Components/UserManagement/LaboratoryStaffModal.vue";
+import LaboratoryStaffModal from "@/Pages/Components/Admin/UserManagement/LaboratoryStaffModal.vue";
 import { DeleteIcon} from '@/Components/Icons/outline'
 </script>
 
@@ -41,7 +41,7 @@ import { DeleteIcon} from '@/Components/Icons/outline'
                 <div class="w-auto">
                     <div>
                         <table
-                            :class="['bg-[white]', 'dark:bg-[#4A5568]']"
+                            :class="['bg-[white]', 'dark:bg-[#222738]']"
                             class="w-full bg-white border border-gray-200 rounded-lg shadow-md"
                         >
                             <thead>

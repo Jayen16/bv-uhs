@@ -1,7 +1,7 @@
 <script setup>
 import PerfectScrollbar from '@/Components/PerfectScrollbar.vue'
 import SidebarLink from '@/Components/Sidebar/SidebarLink.vue'
-import { DashboardIcon ,AccountIcon , DirectoryIcon , AppointmentIcon, ReportIcon} from '@/Components/Icons/outline'
+import { DashboardIcon ,AccountIcon , DirectoryIcon , AppointmentIcon, ReportIcon, VisitorIcon, PatientsIcon} from '@/Components/Icons/outline'
 import SidebarCollapsible from '@/Components/Sidebar/SidebarCollapsible.vue'
 import SidebarCollapsibleItem from '@/Components/Sidebar/SidebarCollapsibleItem.vue'
 import { TemplateIcon } from '@heroicons/vue/outline'
@@ -78,6 +78,7 @@ import { TemplateIcon } from '@heroicons/vue/outline'
 
 
         <SidebarLink
+            v-if="$page.props.auth.user.type_id === '1'"
             title="Schedule"
             :href="route('schedule')"
             :active="route().current('schedule')"
@@ -90,7 +91,7 @@ import { TemplateIcon } from '@heroicons/vue/outline'
             </template>
         </SidebarLink>
 
-        <SidebarLink 
+        <!-- <SidebarLink 
             v-if="$page.props.auth.user.type_id === '1'"
             title="Directory Record"
             :href="route('directory')"
@@ -102,9 +103,43 @@ import { TemplateIcon } from '@heroicons/vue/outline'
                     aria-hidden="true"
                 />
             </template>
-        </SidebarLink>
+        </SidebarLink> -->
+
+        <SidebarCollapsible
+            v-if="$page.props.auth.user.type_id === '1'"
+            title="Directory Record"
+            :active="route().current('directory.*')"
+        >
+            <template #icon>
+                <AccountIcon
+                    class="flex-shrink-0 w-6 h-6"
+                    aria-hidden="true"
+                />
+            </template>
+
+            <SidebarCollapsibleItem
+                :href="route('directory.student_app')" 
+                title="Student Applicant"
+                :active="route().current('directory.student_app')" 
+            />
+
+            <SidebarCollapsibleItem
+                :href="route('directory.enrolled_student')" 
+                title="Enrolled Student"
+                :active="route().current('directory.enrolled_student')" 
+            />
+
+            <SidebarCollapsibleItem
+                :href="route('directory.employee')" 
+                title="Employee"
+                :active="route().current('directory.employee')" 
+            />
+        </SidebarCollapsible>
+
+
 
         <SidebarLink
+            v-if="$page.props.auth.user.type_id === '1'"
             title="Reports"
             :href="route('report')"
             :active="route().current('report')"
@@ -116,6 +151,72 @@ import { TemplateIcon } from '@heroicons/vue/outline'
                 />
             </template>
         </SidebarLink>
+
+
+        <!-- NURSE HERE -->
+
+
+        <SidebarCollapsible
+            v-if="$page.props.auth.user.type_id === '2'"
+            title="Patient Record"
+            :active="route().current('patient.*')"
+        >
+            <template #icon>
+                <PatientsIcon
+                    class="flex-shrink-0 w-6 h-6"
+                    aria-hidden="true"
+                />
+            </template>
+
+            <SidebarCollapsibleItem
+                :href="route('patient.student')" 
+                title="Student"
+                :active="route().current('patient.student')" 
+            />
+
+            <SidebarCollapsibleItem
+                :href="route('patient.employee')" 
+                title="Employee"
+                :active="route().current('patient.employee')" 
+            />
+
+            <SidebarCollapsibleItem
+                :href="route('patient.outpatient')" 
+                title="Outpatient"
+                :active="route().current('patient.outpatient')" 
+            />
+        </SidebarCollapsible>
+
+
+        <SidebarLink
+            v-if="$page.props.auth.user.type_id === '2'"
+            title="Visit List"
+            :href="route('report')"
+            :active="route().current('report')"
+        >
+            <template #icon>
+                <VisitorIcon
+                    class="flex-shrink-0 w-6 h-6"
+                    aria-hidden="true"
+                />
+            </template>
+        </SidebarLink>
+
+        <SidebarLink
+            v-if="$page.props.auth.user.type_id === '2'"
+            title="Release Result"
+            :href="route('report')"
+            :active="route().current('report')"
+        >
+            <template #icon>
+                <ReportIcon
+                    class="flex-shrink-0 w-6 h-6"
+                    aria-hidden="true"
+                />
+            </template>
+        </SidebarLink>
+
+
 
 <!-- 
         <SidebarLink 

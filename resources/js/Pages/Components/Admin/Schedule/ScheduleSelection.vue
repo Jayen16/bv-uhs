@@ -48,13 +48,14 @@ const value = ref(25);
                         selectionMode="multiple"
                         :manualInput="false"
                         placeholder="Select Date"
-                        class="rounded-md"
+                        class="rounded-md "
                     />
                 </div>
                 <!-- </template> -->
             </div>
 
             <div class="w-1/8 text-base text-left flex-col mb-0 mt-2">
+                <ValidationErrors class="mb-4" />
                 <label
                     for=""
                     class="block uppercase tracking-wide text-grey-darker text-sm font-bold mb-2"
@@ -119,6 +120,7 @@ const value = ref(25);
 <script>
 import axios from 'axios';
 import ToastNotification from '@/Components/ToastNotification.vue';
+import ValidationErrors from "@/Components/ValidationErrors.vue";
 
 const loading = ref(false);
 

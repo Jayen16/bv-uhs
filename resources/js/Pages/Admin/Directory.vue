@@ -2,6 +2,7 @@
 import AuthenticatedLayout from '@/Layouts/Authenticated.vue'
 import Button from '@/Components/Button.vue'
 import Modal from '@/Components/Modal.vue'
+import DirectoryList from "@/Pages/Components/Admin/Directory/DirectoryList.vue";
 </script>
 
 <template>
@@ -15,7 +16,7 @@ import Modal from '@/Components/Modal.vue'
 
         </template> -->
 
-        <p>KO</p>
+            <DirectoryList/>
     </AuthenticatedLayout>
 </template>
 

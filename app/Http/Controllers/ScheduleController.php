@@ -27,36 +27,58 @@ class ScheduleController extends Controller
     }
     
 
-    public function store(ScheduleRequest $request , $appointment_type){
+    public function store(ScheduleRequest $request, $appointment_type) {
+        $validatedData = $request->validated();
+        
 
-
-
-        if($request){
-
-            $requestData = $request->all();
-
-
-            $slotLimit = $requestData['slotLimit'];
+        // Iterate over selected times
+        foreach ($validatedData['selectedTimes'] as $selectedTime) {
+            // Iterate over selected dates
+            foreach ($validatedData['selectedDates'] as $selectedDate) {
+                // Check if a schedule entry already exists for the chosen date and time
+                $existingSchedule = Schedule::where('appointment_type', $appointment_type)
+                    ->where('date', $selectedDate)
+                    ->where('time', $selectedTime)
+                    ->first();
     
-            foreach ($requestData['selectedTimes'] as $selectedTime) {
-                foreach ($requestData['selectedDates'] as $selectedDate) {
-    
-                    // $formattedDate = Carbon::parse($selectedDate)->format('M d, Y');
-    
+                if ($existingSchedule) {
+                    // Update existing slot
+                    $existingSchedule->update([
+                        'slot' => $existingSchedule->slot + $validatedData['slotLimit'],
+                    ]);
+                } else {
+                    // Create new schedule entry
                     Schedule::create([
                         'date' => $selectedDate,
                         'time' => $selectedTime,
-                        'slot' => $slotLimit,
-                        'appointment_type'=>$appointment_type
-    
+                        'appointment_type' => $appointment_type,
+                        'slot' => $validatedData['slotLimit'],
                     ]);
                 }
             }
-        
-            return response()->json(['message' => 'Schedule/s added successfully']);
         }
-  
+    
+        return response()->json(['message' => 'Schedule/s added/updated successfully']);
     }
+    
 
+    public function destroy($schedule_id) {
+        //kulang ako sa pang email dito
+        $schedule = Schedule::find($schedule_id);
+    
+        if ($schedule) {
+            $date = Carbon::parse($schedule->date)->isoFormat('MMM DD, YYYY');
+            
+            $deleted = $schedule->delete();
+    
+            if ($deleted) {
+                return response()->json(['message' => 'Schedule on ' . $date . ' deleted successfully']);
+            } else {
+                return response()->json(['message' => 'Failed to delete schedule']);
+            }
+        } else {
+            return response()->json(['message' => 'Schedule not found']);
+        }
+    }
 
 }

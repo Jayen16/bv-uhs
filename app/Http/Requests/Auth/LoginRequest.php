@@ -50,16 +50,6 @@ class LoginRequest extends FormRequest
             ]);
         }
 
-        
-        if(auth()->user()){
-            $id = auth()->user()->staff_id;
-            $user = User::where('staff_id',$id)->first();
-
-            if ($user) {
-                $user->activity = 'online';
-                $user->save();
-            }
-        }
         // 
         // $role = $this->setRoleBasedOnTypeId($user->type_id);
         // session()->put('role', $role);

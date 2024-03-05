@@ -2,6 +2,8 @@
 import AuthenticatedLayout from '@/Layouts/Authenticated.vue'
 import Button from '@/Components/Button.vue'
 import Modal from '@/Components/Modal.vue'
+import ReportList from '@/Pages/Components/Admin/Report/ReportList.vue';
+
 </script>
 
 <template>
@@ -14,8 +16,8 @@ import Modal from '@/Components/Modal.vue'
             </div>
 
         </template> -->
+        <ReportList/>
 
-        <p>MALAKI</p>
     </AuthenticatedLayout>
 </template>
 

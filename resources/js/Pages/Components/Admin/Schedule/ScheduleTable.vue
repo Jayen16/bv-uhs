@@ -1,4 +1,6 @@
-
+<script setup>
+    import Button from '@/Components/Button.vue';
+</script>
 <template>
 
 <div class="w-full">
@@ -30,7 +32,11 @@
                 <td class="py-2 px-8 border-b border-gray-200"> {{ appointment.time }}</td>
                 <td class="py-2 px-8 border-b border-gray-200"> {{ appointment.slot }} slots</td>
                 <td class="py-2 px-8 border-b border-gray-200"> {{ appointment.taken }} slots</td>
-                <td class="py-2 px-8 border-b border-gray-200"> Action</td>
+                <td class="py-2 px-8 border-b border-gray-200"> 
+
+                    <Button @click="deleteSchedule(appointment.id)" variant="warning" size="sm"> Delete </Button>
+
+                </td>
             </tr>
         </tbody>
     </table>
@@ -45,7 +51,7 @@
 <script>
     import axios from 'axios';
     import { TailwindPagination } from 'laravel-vue-pagination';
-
+    import Swal from 'sweetalert2';
     export default {
         props: {
             appoint_type: {
@@ -90,6 +96,33 @@
                 ...options
             });
             return manilaTime.format(date);
+        },
+        deleteSchedule(schedule_id){
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: "The student who scheduled the appointment will receive an email regarding the cancellation.",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, remove"
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    axios.post(`/api/schedule/destroy/${schedule_id}`)
+                    .then(response => {
+                        Swal.fire({
+                        title: "Deleted!",
+                        text: response.data.message,
+                        icon: "success"
+                        });
+                        this.fetchAppointments();
+                    })
+                    .catch(error => {
+                        console.error('Error deleting user:', error);
+                    });     
+                }
+                });
         }
         },
         

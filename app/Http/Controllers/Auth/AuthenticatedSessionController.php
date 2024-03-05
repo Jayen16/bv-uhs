@@ -34,9 +34,23 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
 
+
+        if(auth()->user()){
+            $id = auth()->user()->staff_id;
+            $user = User::where('staff_id',$id)->first();
+
+            if ($user) {
+                $user->activity = 'online';
+                $user->save();
+            }
+        }
+
+        $token = $user->createToken('authToken')->plainTextToken;
+
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        return redirect()->intended(RouteServiceProvider::HOME)
+                        ->with('token', $token);
     }
 
     /**
@@ -50,9 +64,11 @@ class AuthenticatedSessionController extends Controller
             $user = User::where('staff_id',$id)->first();
 
             if ($user) {
+                $user->tokens()->delete();
                 $user->last_activity = now(); 
                 $user->activity = 'Offline';
                 $user->save();
+                
 
                 Auth::guard('web')->logout();
 

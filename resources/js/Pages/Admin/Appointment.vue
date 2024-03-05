@@ -2,7 +2,7 @@
 import AuthenticatedLayout from '@/Layouts/Authenticated.vue'
 import Button from '@/Components/Button.vue'
 import Modal from '@/Components/Modal.vue'
-import AppointmentTable from '@/Pages/Components/Appointment/AppointmentGeneral.vue';
+import AppointmentTable from '@/Pages/Components/Admin/Appointment/AppointmentGeneral.vue';
 </script>
 
 <template>

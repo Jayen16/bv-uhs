@@ -48,6 +48,9 @@ class Kernel extends HttpKernel
         'admin' => [
             \App\Http\Middleware\AdminMiddleware::class,
         ],
+        'nurse' => [
+            \App\Http\Middleware\NurseMiddleware::class,
+        ],
     ];
 
     /**

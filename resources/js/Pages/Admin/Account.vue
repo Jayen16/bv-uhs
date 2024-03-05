@@ -2,7 +2,7 @@
 import AuthenticatedLayout from '@/Layouts/Authenticated.vue'
 import Button from '@/Components/Button.vue'
 import Modal from '@/Components/Modal.vue'
-import AccountTable from '@/Pages/Components/UserManagement/StaffAccount.vue';
+import AccountTable from '@/Pages/Components/Admin/UserManagement/StaffAccount.vue';
 
 </script>
 

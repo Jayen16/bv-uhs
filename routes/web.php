@@ -66,14 +66,48 @@ Route::group(['middleware' => 'admin'], function () {
         return Inertia::render('Admin/Report');
     })->middleware(['auth', 'verified'])->name('report');
 
+    Route::get('/directory/student-application', function () {
+        return Inertia::render('Admin/Directory');
+    })->middleware(['auth', 'verified'])->name('directory.student_app');
+
+    Route::get('/directory/enrolled-student', function () {
+        return Inertia::render('Admin/Directory');
+    })->middleware(['auth', 'verified'])->name('directory.enrolled_student');
+
+    Route::get('/directory/employee', function () {
+        return Inertia::render('Admin/Directory');
+    })->middleware(['auth', 'verified'])->name('directory.employee');
+
+
+});
+
+Route::group(['middleware' => 'nurse'], function () {
+
+
+    
+    Route::get('/patient/student', function () {
+        return Inertia::render('Common/PatientList');
+    })->middleware(['auth', 'verified'])->name('patient.student');
+
+    Route::get('/patient/employee', function () {
+        return Inertia::render('Common/PatientList');
+    })->middleware(['auth', 'verified'])->name('patient.employee');
+
+    Route::get('/patient/outpatient', function () {
+        return Inertia::render('Common/PatientList');
+    })->middleware(['auth', 'verified'])->name('patient.outpatient');
+
+
 });
 
 
+
 Route::middleware('auth')->group(function () {
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::patch('/profile/staff', [ProfileController::class, 'updateStaff'])->name('profile.updateStaff');
-    Route::patch('/profile/staff/photo', [ProfileController::class, 'updatePhoto'])->name('profile.updatePhoto');
+    Route::patch('/profile/staff/photo', [ProfileController::class, 'updatePhoto'])->name('profile.updatePhoto'); // d pa to tapos
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 

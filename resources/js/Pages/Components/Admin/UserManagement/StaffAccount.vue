@@ -3,7 +3,7 @@
 import AuthenticatedLayout from '@/Layouts/Authenticated.vue'
 import Modal from '@/Components/Modal.vue'
 import Button from '@/Components/Button.vue'
-import StaffModal from '@/Pages/Components/UserManagement/StaffModal.vue'; 
+import StaffModal from '@/Pages/Components/Admin/UserManagement/StaffModal.vue'; 
 import { ToggleIcon , DeleteIcon, EditIcon} from '@/Components/Icons/outline'
 
 </script>
@@ -28,7 +28,7 @@ import { ToggleIcon , DeleteIcon, EditIcon} from '@/Components/Icons/outline'
             <div class="overflow-hidden bg-white rounded-lg shadow">
                 <div class="w-auto">
                     <div>
-                        <table :class="['bg-[white]',  'dark:bg-[#4A5568]']" class="w-full bg-white border border-gray-200 rounded-lg shadow-md">
+                        <table :class="['bg-[white]',  'dark:bg-[#222738]']" class="w-full bg-white border border-gray-200 rounded-lg shadow-md">
                             <thead>
                                 <tr class="bg-[#1B651B] text-white text-left">
                                     <th class="py-3 px-8 border-b border-gray-200">Role</th>

@@ -6,12 +6,10 @@ import { createInertiaApp } from '@inertiajs/vue3'
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers'
 import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 import PrimeVue from 'primevue/config';
-import Lara from '@/Components/presets/lara'; 
 import 'primevue/resources/themes/aura-light-green/theme.css'
-import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import 'primevue/resources/primevue.min.css'
-
+import 'primevue/resources/themes/lara-light-green/theme.css';
 const appName =
     window.document.getElementsByTagName('title')[0]?.innerText || 'K UI'
 
