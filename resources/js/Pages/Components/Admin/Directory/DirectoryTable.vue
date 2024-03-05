@@ -234,7 +234,7 @@ const value2 = ref(null);
     </div>
     <div class="flex justify-end mt-5" >
             <TailwindPagination :data="directoryList" @pagination-change-page="fetchDirectory" />
-        </div>
+     </div>
 
 </template>
 
@@ -255,12 +255,12 @@ const value2 = ref(null);
         },
         data() {
             return {
-                searchTerm: '', // Variable to hold search term
-                directoryList: {}, // Assuming this holds appointment data
+                searchTerm: '', 
+                directoryList: {}, 
                 showToast: false,
                 toastMessage: '',
                 success: false,
-                directoryList: {}, // Assuming this holds appointment data
+                directoryList: {}, 
             };
         },
         mounted() {

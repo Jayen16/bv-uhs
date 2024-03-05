@@ -71,7 +71,7 @@
                 showToast: false,
                 toastMessage: '',
                 success: false,
-                pageAppointment: {}, // Assuming this holds appointment data
+                pageAppointment: {}, 
             };
         },
         mounted() {

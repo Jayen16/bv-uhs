@@ -243,5 +243,56 @@ export const PatientsIcon = defineComponent({
     },
 })
 
+export const ProfileIcon = defineComponent({
+    setup() {
+        return () => (
+        <svg xmlns="http://www.w3.org/2000/svg" class="inline-flex icon icon-tabler icon-tabler-user-circle p-[2px]" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" fill="none"></path>
+            <path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" fill="none"></path>
+            <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855" fill="none"></path>
+        </svg>
+        )
+    },
+})
+
+export const ViewIcon = defineComponent({
+    setup() {
+        return () => (
+        <svg xmlns="http://www.w3.org/2000/svg"  class="icon icon-tabler icon-tabler-folders p-[2px]" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M9 4h3l2 2h5a2 2 0 0 1 2 2v7a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2" fill="none"></path>
+            <path d="M17 17v2a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2h2" fill="none"></path>
+        </svg>
+        )
+    },
+})
+
+export const ConsultationIcon = defineComponent({
+    setup() {
+        return () => (
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-description p-[2px]" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+            <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path>
+            <path d="M9 17h6"></path>
+            <path d="M9 13h6"></path>
+        </svg>
+        )
+    },
+})
+
+export const DentalIcon = defineComponent({
+    setup() {
+        return () => (
+         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-dental p-[2px]" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M12 5.5c-1.074 -.586 -2.583 -1.5 -4 -1.5c-2.1 0 -4 1.247 -4 5c0 4.899 1.056 8.41 2.671 10.537c.573 .756 1.97 .521 2.567 -.236c.398 -.505 .819 -1.439 1.262 -2.801c.292 -.771 .892 -1.504 1.5 -1.5c.602 0 1.21 .737 1.5 1.5c.443 1.362 .864 2.295 1.262 2.8c.597 .759 2 .993 2.567 .237c1.615 -2.127 2.671 -5.637 2.671 -10.537c0 -3.74 -1.908 -5 -4 -5c-1.423 0 -2.92 .911 -4 1.5z" fill="none"></path>
+            <path d="M12 5.5l3 1.5" fill="none"></path>
+        </svg>
+        )
+    },
+})
+
 
 

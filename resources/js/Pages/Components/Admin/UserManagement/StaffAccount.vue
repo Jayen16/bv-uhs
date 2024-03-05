@@ -1,6 +1,5 @@
 
 <script setup>
-import AuthenticatedLayout from '@/Layouts/Authenticated.vue'
 import Modal from '@/Components/Modal.vue'
 import Button from '@/Components/Button.vue'
 import StaffModal from '@/Pages/Components/Admin/UserManagement/StaffModal.vue'; 

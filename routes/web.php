@@ -101,6 +101,10 @@ Route::group(['middleware' => 'nurse'], function () {
 });
 
 
+Route::get('/patient/profile/{patient_id}', function () {
+    return Inertia::render('Common/ConsultationPage');
+})->middleware(['auth', 'verified'])->name('patient.profile');
+
 
 Route::middleware('auth')->group(function () {
 

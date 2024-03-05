@@ -18,21 +18,21 @@ import PatientTable from "@/Pages/Components/Common/PatientTable.vue";
                     :class="{ 'bg-green-800 text-white': openTab === 1 }"
                     class="flex-1 py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300"
                 >
-                    Student Applicant
+                    Student
                 </button>
                 <button
                     @click="switchTab(2)"
                     :class="{ 'bg-green-800 text-white': openTab === 2 }"
                     class="flex-1 py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300"
                 >
-                Enrolled Student
+                    Employee
                 </button>
                 <button
                     @click="switchTab(3)"
                     :class="{ 'bg-green-800 text-white': openTab === 3 }"
                     class="flex-1 py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300"
                 >
-                Employee
+                    Outpatient
                 </button>
 
             </div>

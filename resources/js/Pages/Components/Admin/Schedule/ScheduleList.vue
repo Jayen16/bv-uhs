@@ -78,7 +78,7 @@ export default {
     },
     data() {
         return {
-            openTab: 1, // Default to the first tab
+            openTab: 1, // Default to or first tab
         };
     },
 };

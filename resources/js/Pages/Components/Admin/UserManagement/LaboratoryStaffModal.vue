@@ -92,8 +92,8 @@ export default {
                 professional_title: '',
                 image_signature: null,
             },
-            imageUrl: '', // Initially set to an empty string
-            loading: false // Initially set to false
+            imageUrl: '', 
+            loading: false 
         };
     },
     methods:{

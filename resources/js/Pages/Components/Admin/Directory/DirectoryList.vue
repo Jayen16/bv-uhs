@@ -77,7 +77,7 @@ export default {
     methods: {
         switchTab(tabNumber) {
             this.openTab = tabNumber;
-            // Update URL based on tab
+            // Update URL based sa tab na napindot
             let newPath = '/directory/';
             if (tabNumber === 1) {
                 newPath += 'student-application';
