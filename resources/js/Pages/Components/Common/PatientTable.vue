@@ -145,9 +145,9 @@ import {
                                     v-if="$page.props.auth.user.type_id === '2'"
                                 >
                                
-                                <Button @click="redirectToProfile(patient.student_id)" v-if="patient.student_id"><ConsultationIcon /> View Profile</Button>
-                                <Button @click="redirectToProfile(patient.employee_id)" v-if="patient.employee_id"><ConsultationIcon /> View Profile</Button>
-                                <Button @click="redirectToProfile(patient.outpatient_id)" v-if="patient.outpatient_id"><ConsultationIcon /> View Profile</Button>
+                                <Button @click="redirectToConsultation(patient.student_id)" v-if="patient.student_id"><ConsultationIcon /> Consult</Button>
+                                <Button @click="redirectToConsultation(patient.employee_id)" v-if="patient.employee_id"><ConsultationIcon /> Consult</Button>
+                                <Button @click="redirectToConsultation(patient.outpatient_id)" v-if="patient.outpatient_id"><ConsultationIcon /> Consult</Button>
 
                                 </div>
 
@@ -249,8 +249,8 @@ export default {
             };
             return typeMap[bloodtype.toLowerCase()] || bloodtype;
         },
-        redirectToProfile(patient_id) {
-            const profileUrl = `/patient/profile/${patient_id}`;
+        redirectToConsultation(patient_id) {
+            const profileUrl = `/patient/consultation/${patient_id}`;
             window.location.href = profileUrl;
         }
 

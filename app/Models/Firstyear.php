@@ -14,19 +14,19 @@ class Firstyear extends Model
     protected $guarded = [];
 
 
-    // public function firstyeardental()
-    // {
-    //     return $this->hasMany(FirstyearDental::class, 'firstyear_id', 'temp_id');
-    // }
+    public function firstyeardental()
+    {
+        return $this->hasMany(FirstyearDental::class, 'firstyear_id', 'temp_id');
+    }
 
-    // public function firstyearConsultation()
-    // {
-    //     return $this->belongsTo(FirstyearConsultation::class,'firstyear_id' , 'temp_id');
-    // }
+    public function firstyearConsultation()
+    {
+        return $this->belongsTo(FirstyearConsultation::class,'firstyear_id' , 'temp_id');
+    }
 
-    // public function marks()
-    // {
-    //     return $this->hasMany(Mark::class,'firstyear_id','patient_id'); 
-    // }
+    public function marks()
+    {
+        return $this->hasMany(Mark::class,'firstyear_id','patient_id'); 
+    }
 
 }

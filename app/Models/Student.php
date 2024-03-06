@@ -14,20 +14,20 @@ class Student extends Model
     protected $guarded = [];
 
 
-    // public function studentconsultation()
-    // {
-    //     return $this->belongsTo(StudentConsultation::class, 'student_id', 'student_id');
-    // }
+    public function studentconsultation()
+    {
+        return $this->belongsTo(StudentConsultation::class, 'student_id', 'student_id');
+    }
 
-    // public function studentdental()
-    // {
-    //     return $this->hasMany(StudentDental::class, 'dentalpatient_id', 'student_id');
-    // }
+    public function studentdental()
+    {
+        return $this->hasMany(StudentDental::class, 'dentalpatient_id', 'student_id');
+    }
 
 
-    // public function marks()
-    // {
-    //     return $this->hasMany(Mark::class,'student_id','student_id'); 
-    // }
+    public function marks()
+    {
+        return $this->hasMany(Mark::class,'student_id','student_id'); 
+    }
 
 }

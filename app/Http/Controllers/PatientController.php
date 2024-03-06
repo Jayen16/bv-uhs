@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\PatientResource;
 use App\Models\Employee;
+use App\Models\Firstyear;
 use App\Models\Outpatient;
+use App\Models\Staff;
 use App\Models\Student;
+use App\Models\StudentConsultation;
 use Illuminate\Http\Request;
 
 class PatientController extends Controller
@@ -63,7 +66,44 @@ class PatientController extends Controller
         return PatientResource::collection($results);
     }
 
-    public function show(){
+    public function preview($patient_id){
+
+
+        if(Student::where('student_id',$patient_id)){
+            $patientInfo = Student::with(['StudentConsultation' ,'StudentConsultation.studentSoap','StudentConsultation.staff'])
+            ->where('student_id', $patient_id)
+            ->first();
+
+            $type = 'Student';
+        }elseif(Employee::where('employee_id',$patient_id)){
+            $patientInfo = Employee::with(['EmployeeConsultation' ,'EmployeeConsultation.employeeSoap','EmployeeConsultation.staff'])
+            ->where('employee_id', $patient_id)
+            ->first();
+
+            $type = 'Employee';
+
+        }elseif(Outpatient::where('outpatient_id',$patient_id)){
+            $patientInfo = Outpatient::with(['OutpatientConsultation' ,'OutpatientConsultation.outpatientSoap','OutpatientConsultation.staff'])
+            ->where('outpatient_id', $patient_id)
+            ->first();
+
+            $type = 'Outpatient';
+
+        }elseif(Firstyear::where('temp_id',$patient_id)){
+            $patientInfo = Firstyear::with(['FirstyearConsultation' ,'FirstyearConsultation.studentSoap','FirstyearConsultation.staff'])
+            ->where('temp_id', )
+            ->first();
+            
+            $type = 'Firstyear';
+        }
+  
+
+        $result = [
+            'patientInfo' => $patientInfo,
+            'type' => $type
+        ];
+        
+        return $result;
         
     }
 }

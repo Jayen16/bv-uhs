@@ -191,8 +191,8 @@ import { TemplateIcon } from '@heroicons/vue/outline'
         <SidebarLink
             v-if="$page.props.auth.user.type_id === '2'"
             title="Visit List"
-            :href="route('report')"
-            :active="route().current('report')"
+            :href="route('visit.nurse')"
+            :active="route().current('visit.nurse')"
         >
             <template #icon>
                 <VisitorIcon
@@ -205,8 +205,8 @@ import { TemplateIcon } from '@heroicons/vue/outline'
         <SidebarLink
             v-if="$page.props.auth.user.type_id === '2'"
             title="Release Result"
-            :href="route('report')"
-            :active="route().current('report')"
+            :href="route('release_result')"
+            :active="route().current('release_result')"
         >
             <template #icon>
                 <ReportIcon

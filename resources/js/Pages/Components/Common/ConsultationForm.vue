@@ -1,6 +1,8 @@
 <script setup>
 import HeadAndBody from "@/Pages/Components/Common/HeadAndBody.vue";
+import ConsultationPreview from "@/Pages/Components/Common/ConsultationPreview.vue";
 import Button from "@/Components/Button.vue";
+
 </script>
 
 <template>
@@ -20,10 +22,7 @@ import Button from "@/Components/Button.vue";
         <div>
             <!-- <livewire:livewire_components.profile-preview :patient_id="$patient_id" :record_number="''"/> -->
             
-        </div>
-
-        
-        <div>
+            <ConsultationPreview/>
             <!-- <livewire:livewire_components.consultation-form :patient_id="$patient_id" :patient_type="'student'"/> -->
         </div>
         

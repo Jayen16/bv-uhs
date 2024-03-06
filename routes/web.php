@@ -97,12 +97,22 @@ Route::group(['middleware' => 'nurse'], function () {
         return Inertia::render('Common/PatientList');
     })->middleware(['auth', 'verified'])->name('patient.outpatient');
 
+    Route::get('/visitor', function () {
+        return Inertia::render('Nurse/VisitorList');
+    })->middleware(['auth', 'verified'])->name('visit.nurse');
+
+    Route::get('/release/result', function () {
+        return Inertia::render('Nurse/ReleaseResult');
+    })->middleware(['auth', 'verified'])->name('release_result');
+
 
 });
 
 
-Route::get('/patient/profile/{patient_id}', function () {
+Route::get('/patient/consultation/{patient_id}', function () {
+
     return Inertia::render('Common/ConsultationPage');
+
 })->middleware(['auth', 'verified'])->name('patient.profile');
 
 

@@ -1,15 +1,14 @@
 <script setup>
-import Toolbar from 'primevue/toolbar';
-import InputText from 'primevue/inputtext';
-import IconField from 'primevue/iconfield';
-import InputIcon from 'primevue/inputicon';
-import Button from '@/Components/Button.vue'
+import Toolbar from "primevue/toolbar";
+import InputText from "primevue/inputtext";
+import IconField from "primevue/iconfield";
+import InputIcon from "primevue/inputicon";
+import Button from "@/Components/Button.vue";
 
-import { ref } from 'vue';
+import { ref } from "vue";
 
 const value1 = ref(null);
 const value2 = ref(null);
-
 </script>
 
 <template>
@@ -21,11 +20,18 @@ const value2 = ref(null);
                     class="text-center text-xl text-white w-auto py-2 p-3 bg-[#186434] rounded-md"
                 >
                     <p class="uppercase font-bold">
-                        <span v-if="individual_type ==='student_applicant'" >Student Applicant <span class="normal-case font-normal italic" >(incoming student)</span></span> 
-                        <span v-else-if="individual_type ==='general_student'" >General Student </span> 
-                        <span v-else-if="individual_type ==='general_employee'" >General Employee </span> 
-
-                        
+                        <span v-if="individual_type === 'student_applicant'"
+                            >Student Applicant
+                            <span class="normal-case font-normal italic"
+                                >(incoming student)</span
+                            ></span
+                        >
+                        <span v-else-if="individual_type === 'general_student'"
+                            >General Student
+                        </span>
+                        <span v-else-if="individual_type === 'general_employee'"
+                            >General Employee
+                        </span>
                     </p>
                 </div>
 
@@ -58,10 +64,17 @@ const value2 = ref(null);
                         </div>
 
                         <div class="flex justify-end mt-4 gap-3">
-                            <div class="card flex flex-wrap justify-content-center gap-3">
+                            <div
+                                class="card flex flex-wrap justify-content-center gap-3"
+                            >
                                 <IconField iconPosition="left">
-                                    <InputIcon class="pi pi-search"> </InputIcon>
-                                    <InputText v-model="searchTerm" placeholder="Search" @input="search" />
+                                    <InputIcon class="pi pi-search">
+                                    </InputIcon>
+                                    <InputText
+                                        v-model="searchTerm"
+                                        placeholder="Search"
+                                        @input="search"
+                                    />
                                 </IconField>
                             </div>
                             <div class="flex justify-end">
@@ -148,17 +161,25 @@ const value2 = ref(null);
                     >
                         <thead class="bg-green-800 text-white text-left">
                             <tr class="bg-green-800 text-white text-left">
-                                <th v-if="individual_type ==='student_applicant'"
+                                <th
+                                    v-if="
+                                        individual_type === 'student_applicant'
+                                    "
                                     class="py-3 px-8 border-b border-gray-200 w-[16rem]"
                                 >
                                     Control Number
                                 </th>
-                                <th 
+                                <th
                                     class="py-3 px-8 border-b border-gray-200 w-[16rem]"
                                 >
-                                <span v-if="individual_type !=='general_employee'" >Student Number</span>
-                                <span v-else>Employee Number</span>
-                                     
+                                    <span
+                                        v-if="
+                                            individual_type !==
+                                            'general_employee'
+                                        "
+                                        >Student Number</span
+                                    >
+                                    <span v-else>Employee Number</span>
                                 </th>
                                 <th
                                     class="py-3 px-8 border-b border-gray-200 w-[16rem]"
@@ -168,11 +189,27 @@ const value2 = ref(null);
                                 <th
                                     class="py-3 px-8 border-b border-gray-200 w-[16rem]"
                                 >
-
-                                <span v-if="individual_type ==='student_applicant'" >Google Email </span>
-                                <span v-else-if="individual_type ==='general_student'" >Cvsu Email </span>
-                                <span v-else-if="individual_type ==='general_employee'" >Cvsu Email </span>
-
+                                    <span
+                                        v-if="
+                                            individual_type ===
+                                            'student_applicant'
+                                        "
+                                        >Google Email
+                                    </span>
+                                    <span
+                                        v-else-if="
+                                            individual_type ===
+                                            'general_student'
+                                        "
+                                        >Cvsu Email
+                                    </span>
+                                    <span
+                                        v-else-if="
+                                            individual_type ===
+                                            'general_employee'
+                                        "
+                                        >Cvsu Email
+                                    </span>
                                 </th>
                                 <th
                                     class="py-3 px-8 border-b border-gray-200 w-[16rem]"
@@ -182,9 +219,14 @@ const value2 = ref(null);
                                 <th
                                     class="py-3 px-8 border-b border-gray-200 w-[16rem]"
                                 >
-                                <span v-if="individual_type !=='general_employee'" >Program</span>
-                                <span v-else>Designation</span>
-
+                                    <span
+                                        v-if="
+                                            individual_type !==
+                                            'general_employee'
+                                        "
+                                        >Program</span
+                                    >
+                                    <span v-else>Designation</span>
                                 </th>
                                 <th
                                     class="py-3 px-8 border-b border-gray-200 w-[16rem]"
@@ -192,35 +234,94 @@ const value2 = ref(null);
                                     Action
                                 </th>
                             </tr>
-                            
                         </thead>
-                 
+
                         <tbody>
-
-  
-                            <tr v-if="directoryList && directoryList.data && directoryList.data.length !== 0" v-for="(individual, index) in directoryList.data" :key="index">
-                                <td v-if="individual_type === 'student_applicant'" class="py-2 px-8 border-b border-gray-200">{{ individual.temp_id }}</td>
-                                <td class="py-2 px-8 border-b border-gray-200 text-center">{{ individual.id_number }}</td>
-                                <td class="py-2 px-8 border-b border-gray-200">{{ individual.first_name }} {{ individual.middle_name }} {{ individual.last_name }}</td>
-                                <td class="py-2 px-8 border-b border-gray-200">{{ individual.google_email }}</td>
-                                <td class="py-2 px-8 border-b border-gray-200">{{ individual.sex }}</td>
+                            <tr
+                                v-if="
+                                    directoryList &&
+                                    directoryList.data &&
+                                    directoryList.data.length !== 0
+                                "
+                                v-for="(
+                                    individual, index
+                                ) in directoryList.data"
+                                :key="index"
+                            >
+                                <td
+                                    v-if="
+                                        individual_type === 'student_applicant'
+                                    "
+                                    class="py-2 px-8 border-b border-gray-200"
+                                >
+                                    {{ individual.temp_id }}
+                                </td>
+                                <td
+                                    class="py-2 px-8 border-b border-gray-200 text-center"
+                                >
+                                    {{ individual.id_number }}
+                                </td>
                                 <td class="py-2 px-8 border-b border-gray-200">
-                                    <span v-if="individual_type !== 'general_employee'">{{ individual.program }}</span>
-                                    <span v-else>{{ individual.designation }}</span>
+                                    {{ individual.first_name }}
+                                    {{ individual.middle_name }}
+                                    {{ individual.last_name }}
                                 </td>
-                                <td class="py-2 px-8 border-b border-gray-200"> 
-                                    <Button size="sm" v-if="individual_type === 'student_applicant'"> Transfer Student </Button>
-                                    <Button size="sm" v-if="individual_type === 'general_employee'"> Transfer to Patient </Button>
-                                    <Button size="sm" v-if="individual_type === 'general_student'"> Transfer to Patient </Button>
+                                <td class="py-2 px-8 border-b border-gray-200">
+                                    {{ individual.google_email }}
+                                </td>
+                                <td class="py-2 px-8 border-b border-gray-200">
+                                    {{ individual.sex }}
+                                </td>
+                                <td class="py-2 px-8 border-b border-gray-200">
+                                    <span
+                                        v-if="
+                                            individual_type !==
+                                            'general_employee'
+                                        "
+                                        >{{ individual.program }}</span
+                                    >
+                                    <span v-else>{{
+                                        individual.designation
+                                    }}</span>
+                                </td>
+                                <td class="py-2 px-8 border-b border-gray-200">
+                                    <Button
+                                        size="sm"
+                                        v-if="
+                                            individual_type ===
+                                            'student_applicant'
+                                        "
+                                    >
+                                        Transfer Student
+                                    </Button>
+                                    <Button
+                                        size="sm"
+                                        v-if="
+                                            individual_type ===
+                                            'general_employee'
+                                        "
+                                    >
+                                        Transfer to Patient
+                                    </Button>
+                                    <Button
+                                        size="sm"
+                                        v-if="
+                                            individual_type ===
+                                            'general_student'
+                                        "
+                                    >
+                                        Transfer to Patient
+                                    </Button>
                                 </td>
                             </tr>
-                            <tr v-else colspan="7"  class="py-4 px-8 border-b border-gray-200 flex justify-center items-center">
-                               <td>No Available Records</td> 
+                            <tr
+                                v-else
+                                colspan="7"
+                                class="py-4 px-8 border-b border-gray-200 flex justify-center items-center"
+                            >
+                                <td>No Available Records</td>
                             </tr>
-
-
-                    </tbody>
-
+                        </tbody>
                     </table>
                 </div>
 
@@ -228,59 +329,62 @@ const value2 = ref(null);
             </div>
         </div>
 
-      <!-- Applicant, No student number yet(text) , Ready to transfer as student(button), Added as patient(text) , -->
-                                 <!-- Student, Ready to transfer as patient -->
-                                 <!-- general_employee, Ready to transfer as patient -->
+        <!-- Applicant, No student number yet(text) , Ready to transfer as student(button), Added as patient(text) , -->
+        <!-- Student, Ready to transfer as patient -->
+        <!-- general_employee, Ready to transfer as patient -->
     </div>
-    <div class="flex justify-end mt-5" >
-            <TailwindPagination :data="directoryList" @pagination-change-page="fetchDirectory" />
-     </div>
-
+    <div class="flex justify-end mt-5">
+        <TailwindPagination
+            :data="directoryList"
+            @pagination-change-page="fetchDirectory"
+        />
+    </div>
 </template>
 
 <script>
-    import axios from 'axios';
-    import { TailwindPagination } from 'laravel-vue-pagination';
-    import Swal from 'sweetalert2';
-    export default {
-        props: {
-            individual_type: {
-                type: String,
-                required: true
-            }
+import axios from "axios";
+import { TailwindPagination } from "laravel-vue-pagination";
+import Swal from "sweetalert2";
+export default {
+    props: {
+        individual_type: {
+            type: String,
+            required: true,
         },
-        components: {
-            // ToastNotification,
-            TailwindPagination
+    },
+    components: {
+        // ToastNotification,
+        TailwindPagination,
+    },
+    data() {
+        return {
+            searchTerm: "",
+            directoryList: {},
+            showToast: false,
+            toastMessage: "",
+            success: false,
+            directoryList: {},
+        };
+    },
+    mounted() {
+        this.fetchDirectory();
+    },
+    methods: {
+        fetchDirectory(page = 1) {
+            axios
+                .get(
+                    `/api/directory/${this.individual_type}?page=${page}&search=${this.searchTerm}`
+                )
+                .then((response) => {
+                    this.directoryList = response.data;
+                })
+                .catch((error) => {
+                    console.error("Error fetching appointment data:", error);
+                });
         },
-        data() {
-            return {
-                searchTerm: '', 
-                directoryList: {}, 
-                showToast: false,
-                toastMessage: '',
-                success: false,
-                directoryList: {}, 
-            };
-        },
-        mounted() {
+        search() {
             this.fetchDirectory();
         },
-        methods: {
-            fetchDirectory(page = 1) {
-                axios.get(`/api/directory/${this.individual_type}?page=${page}&search=${this.searchTerm}`)
-                    .then(response => {
-                        this.directoryList = response.data;
-                    })
-                    .catch(error => {
-                        console.error('Error fetching appointment data:', error);
-                    });
-            },
-            search() {
-                this.fetchDirectory();
-            },
-
-        },
-        
-    }
+    },
+};
 </script>

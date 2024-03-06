@@ -34,7 +34,7 @@
                 <td class="py-2 px-8 border-b border-gray-200"> {{ appointment.taken }} slots</td>
                 <td class="py-2 px-8 border-b border-gray-200"> 
 
-                    <Button @click="deleteSchedule(appointment.id)" variant="warning" size="sm"> Delete </Button>
+                    <Button @click="deleteSchedule(appointment.id)" variant="warning" size="sm"> Discard </Button>
 
                 </td>
             </tr>

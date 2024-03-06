@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\DirectoryController;
+use App\Http\Controllers\MonitorController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\Staff\StaffController;
@@ -55,7 +56,12 @@ Route::controller(DirectoryController::class)->group(function () {
 
 Route::controller(PatientController::class)->group(function () {
     Route::get('/patient/{patient_type}','index')->name('patient.index');
-    // Route::get('/patient/profile/{patient_id}','show')->name('patient.profile');
+    Route::get('/patient/consultation/preview/{patient_id}','preview')->name('patient.preview');
+});
+
+Route::controller(MonitorController::class)->group(function () {
+    Route::get('/visitor/today','index')->name('visitor.index');
+    Route::get('/releasement/result','release')->name('visitor.release');
 });
 
 
