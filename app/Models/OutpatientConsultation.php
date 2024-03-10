@@ -51,5 +51,9 @@ class OutpatientConsultation extends Model
     {
         return $this->belongsTo(OutpatientSoap::class, 'record_number', 'record_number');
     }
+    public function soap()
+    {
+        return $this->belongsTo(OutpatientSoap::class, 'record_number', 'record_number');
+    }
     
 }

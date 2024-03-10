@@ -9,6 +9,7 @@ use App\Models\EmployeeConsultation;
 use App\Models\FirstyearConsultation;
 use App\Models\OutpatientConsultation;
 use App\Models\ReleaseResult;
+use App\Models\Staff;
 use App\Models\StudentConsultation;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -115,6 +116,23 @@ class MonitorController extends Controller
             
             // Return the paginated consultations
             return ReleaseResource::collection($paginatedConsultations);
+    }
+
+
+    public function attendingPhysician()
+    {
+        $staffRecords = Staff::where('type_id', '3')->get();
+
+        $staffTypeIds = $staffRecords->pluck('type_id')->toArray();
+
+        $physicians = Staff::with(['user'])
+            ->whereIn('type_id', $staffTypeIds)
+            ->whereHas('user', function ($query) use ($staffTypeIds) {
+                $query->whereIn('type_id', $staffTypeIds);
+            })
+            ->get();
+
+        return response()->json($physicians);
     }
     
 }

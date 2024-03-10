@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\ConsultationController;
 use App\Http\Controllers\DirectoryController;
 use App\Http\Controllers\MonitorController;
 use App\Http\Controllers\PatientController;
@@ -56,14 +57,19 @@ Route::controller(DirectoryController::class)->group(function () {
 
 Route::controller(PatientController::class)->group(function () {
     Route::get('/patient/{patient_type}','index')->name('patient.index');
-    Route::get('/patient/consultation/preview/{patient_id}','preview')->name('patient.preview');
+    Route::get('/patient/{patient_type}/consultation/preview/{patient_id}','preview')->name('patient.preview');
 });
 
 Route::controller(MonitorController::class)->group(function () {
     Route::get('/visitor/today','index')->name('visitor.index');
     Route::get('/releasement/result','release')->name('visitor.release');
+    Route::get('/physicians','attendingPhysician')->name('physician.list');
 });
 
+Route::controller(ConsultationController::class)->group(function () {
+    Route::post('/consultation','store')->name('consultation.store');
+
+});
 
 // Route::get('/user/{id}', [StaffController::class, 'userDetail'])->name('detail.user');
 // Route::post('/staff/activity', [StaffController::class, 'updateActivity']);

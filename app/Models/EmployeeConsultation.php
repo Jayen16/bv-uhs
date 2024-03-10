@@ -48,4 +48,9 @@ class EmployeeConsultation extends Model
         return $this->belongsTo(EmployeeSoap::class, 'record_number', 'record_number');
     }
     
+    public function soap()
+    {
+        return $this->belongsTo(EmployeeSoap::class, 'record_number', 'record_number');
+    }
+    
 }

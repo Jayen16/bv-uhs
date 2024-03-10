@@ -66,44 +66,55 @@ class PatientController extends Controller
         return PatientResource::collection($results);
     }
 
-    public function preview($patient_id){
+    public function preview($patient_type,$patient_id){
 
 
         if(Student::where('student_id',$patient_id)){
-            $patientInfo = Student::with(['StudentConsultation' ,'StudentConsultation.studentSoap','StudentConsultation.staff'])
+            $patientInfo = Student::with(['consultation' ,'consultation.soap','consultation.staff'])
             ->where('student_id', $patient_id)
             ->first();
 
-            $type = 'Student';
         }elseif(Employee::where('employee_id',$patient_id)){
-            $patientInfo = Employee::with(['EmployeeConsultation' ,'EmployeeConsultation.employeeSoap','EmployeeConsultation.staff'])
+            $patientInfo = Employee::with(['consultation' ,'consultation.soap','consultation.staff'])
             ->where('employee_id', $patient_id)
             ->first();
 
-            $type = 'Employee';
 
         }elseif(Outpatient::where('outpatient_id',$patient_id)){
-            $patientInfo = Outpatient::with(['OutpatientConsultation' ,'OutpatientConsultation.outpatientSoap','OutpatientConsultation.staff'])
+            $patientInfo = Outpatient::with(['consultation' ,'consultation.soap','consultation.staff'])
             ->where('outpatient_id', $patient_id)
             ->first();
 
-            $type = 'Outpatient';
 
         }elseif(Firstyear::where('temp_id',$patient_id)){
-            $patientInfo = Firstyear::with(['FirstyearConsultation' ,'FirstyearConsultation.studentSoap','FirstyearConsultation.staff'])
+            $patientInfo = Firstyear::with(['consultation' ,'consultation.soap','consultation.staff'])
             ->where('temp_id', )
             ->first();
             
-            $type = 'Firstyear';
         }
   
 
         $result = [
             'patientInfo' => $patientInfo,
-            'type' => $type
+            'type' => $patient_type
         ];
         
         return $result;
         
+    }
+
+
+    public function AttendingPhysician(){
+        $staffRecords = Staff::where('type_id', '3')->get();
+
+        $staffTypeIds = $staffRecords->pluck('type_id')->toArray();
+        
+        $this->physicians = Staff::with(['user', 'studentconsultation'])
+            ->whereIn('type_id', $staffTypeIds)
+            ->whereHas('user', function ($query) use ($staffTypeIds) {
+                $query->whereIn('type_id', $staffTypeIds);
+            })
+            ->get();
+    
     }
 }

@@ -250,7 +250,7 @@ export default {
             return typeMap[bloodtype.toLowerCase()] || bloodtype;
         },
         redirectToConsultation(patient_id) {
-            const profileUrl = `/patient/consultation/${patient_id}`;
+            const profileUrl = `/patient/${this.patient_type}/consultation/${patient_id}`;
             window.location.href = profileUrl;
         }
 

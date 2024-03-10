@@ -109,7 +109,7 @@ Route::group(['middleware' => 'nurse'], function () {
 });
 
 
-Route::get('/patient/consultation/{patient_id}', function () {
+Route::get('/patient/{patient_type}/consultation/{patient_id}', function () {
 
     return Inertia::render('Common/ConsultationPage');
 

@@ -47,5 +47,11 @@ class StudentConsultation extends Model
         return $this->belongsTo(StudentSoap::class, 'record_number', 'record_number');
     }
 
+    public function soap()
+    {
+        return $this->belongsTo(StudentSoap::class, 'record_number', 'record_number');
+    }
+
+     //same studentSoap and soap (para lang d na mag rename sa vue)
     
 }

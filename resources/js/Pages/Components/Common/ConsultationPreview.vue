@@ -101,7 +101,7 @@
         </div>
 
         <!--new row  -->
-        <div class="-mx-3 md:flex mb-6">
+        <div v-if="previewList?.patientInfo?.consultation?.soap?.medications_given" class="-mx-3 md:flex mb-6">
             <!-- date --> 
             <div class="md:w-1/4 px-3 mb-6 md:mb-4">
                 <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="previous-date">
@@ -114,7 +114,7 @@
                         </svg>
                     </div>
                     <p datepicker type="text" id="previous-date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-blue-500 light:focus:border-blue-500" >
-                        {{ formatDate(previewList?.patientInfo?.student_consultation?.created_at) }}
+                        {{ formatDate(previewList?.patientInfo?.consultation?.created_at) }}
                     </p>
                 </div>
             </div>
@@ -125,7 +125,7 @@
                 </label>
                 <p class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" 
                 id="previous-diagnosis">
-                {{ previewList?.patientInfo?.student_consultation?.student_soap?.diagnosis }}
+                {{ previewList?.patientInfo?.consultation?.soap?.diagnosis }}
             </p> 
                
             </div>
@@ -137,7 +137,7 @@
                 <div class="relative">
                     <p class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" 
                     id="previous-diagnosis">
-                    {{ previewList?.patientInfo?.student_consultation?.staff?.first_name }} {{ previewList?.patientInfo?.student_consultation?.staff?.last_name }}
+                    {{ previewList?.patientInfo?.consultation?.staff?.first_name }} {{ previewList?.patientInfo?.consultation?.staff?.last_name }}
                     </p>      
                 </div>
             </div>
@@ -145,98 +145,26 @@
    
        
         <!--new row  -->
-        <div class="-mx-3 md:flex mb-6">
+        <div v-if="previewList?.patientInfo?.consultation?.soap?.medications_given" class="-mx-3 md:flex mb-6">
             <div class="md:w-full px-3">
                 <!-- Medications Given -->
                 <label class="block uppercase tracking-wide text-grey-darker text-sm font-bold mb-2" for="medication-given">
                     Medications Given
                     </label>
                 <textarea class=" no-resize appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-30 resize-none" 
-                id="medication-given" disabled> {{ previewList?.patientInfo?.student_consultation?.student_soap?.medications_given }} </textarea>
+                id="medication-given" disabled> {{ previewList?.patientInfo?.consultation?.soap?.medications_given }} </textarea>
             </div>
         </div>
 
-        <div class=" md:w-full px-3 py-6">
+        <!-- PAG WALA SOAP -->
+        <div v-else-if="$page.props.auth.user.type_id !=='4'" class=" md:w-full px-3 py-6">
             <label class="flex uppercase tracking-wide justify-center text-grey-darker text-xs font-bold mb-2" for="no-data">
                 No Previous S.O.A.P data found
             </label>
         </div>
 
 
-<!-- DENTAL MAY ACCESS NITO -->
 
-    <div class="text-left rounded-md text-white w-auto mb-5  p-3 bg-[#186434] ">
-        <p class="uppercase font-medium">Personal Data</p>
-    </div>
-
-    <!-- Patient type -->
-    <div class="mx-0 md:flex mb-0">
-        <div class="w-1/4 text-base text-left flex-col mb-6">
-            <p class="font-medium">Patient Type: <span class="font-bold uppercase"> patient type</span></p>
-        </div>    
-    </div>
-
-    <div class="-mx-3 md:flex mb-2">
-        <!-- Full Name -->
-        <div class="md:w-2/4 px-3 mb-6 md:mb-0">
-            <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="patient-full-name">
-                Full Name
-            </label>
-            <input class="cursor-not-allowed w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" id="grid-first-name" type="text" value=""
-            disabled>
-        </div>
-        <!-- Age -->
-        <div class="md:w-1/4 px-3 mb-6 md:mb-0">
-            <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="patient-age">
-                Age
-            </label>
-            <input class="cursor-not-allowed w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" id="patient-age" type="text" value=""
-            disabled>
-        </div>
-        <!-- Sex -->
-        <div class="md:w-1/4 px-3 mb-6 md:mb-0">
-            <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="patient-sex">
-                Sex
-            </label>
-            <input class="cursor-not-allowed w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" id="patient-sex" type="text" value="" disabled>
-        </div>
-        <!-- Civil Status -->
-        <div class="md:w-1/4 px-3 mb-6 md:mb-0">
-            <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="patient-civil-status">
-                Civil Status
-            </label>
-            <input class="cursor-not-allowed w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" id="patient-civil-status" type="text" value="" disabled>
-        </div>
-    </div>
-
-    <!-- Address -->
-    <!-- new row -->
-    <div class="-mx-3 md:flex mb-6">
-        <div class="md:w-2/4 px-3 mb-6 md:mb-0">
-            <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="patient-address">
-                Address
-            </label>
-            <input class="cursor-not-allowed w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" id="patient-address" type="text" value="" disabled>
-        </div>
-        <!-- Date of Birth -->
-        <div class="md:w-1/4 px-3 mb-6 md:mb-0">
-            <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="patient-birthdate">
-                Date of Birth
-            </label>
-            <input class="cursor-not-allowed w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" id="patient-birthdate" type="text" value="" disabled>
-        </div>
-        <!-- Blood Type -->
-        <div class="md:w-1/4 px-3 mb-6 md:mb-0">
-            <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="patient-bloodtype">
-                Blood Type
-            </label>
-            <p class="cursor-not-allowed w-24 bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" id="patient-bloodtype" type="text" 
-            > bloodtype dito</p>
-        </div>
-
-        <div class="md:w-1/4 px-3 mb-6 md:mb-0"> 
-        </div>
-    </div>
 </div>
 
 
@@ -251,8 +179,9 @@ import Swal from "sweetalert2";
 const currentURL = window.location.href;
 const urlParts = currentURL.split('/');
 const patient_id = urlParts[urlParts.length - 1];
+const patient_type = urlParts[urlParts.length - 3];
 
-
+// console.log('patient_id' , patient_id);
 export default {
     components: {
         // ToastNotification,
@@ -274,7 +203,7 @@ export default {
         fetchPatientPreview() {
             axios
                 .get(
-                    `/api/patient/consultation/preview/${patient_id}`                  
+                    `/api/patient/${patient_type}/consultation/preview/${patient_id}`                  
                 )
                 .then((response) => {
                     this.previewList = response.data;

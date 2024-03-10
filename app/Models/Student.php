@@ -19,6 +19,13 @@ class Student extends Model
         return $this->belongsTo(StudentConsultation::class, 'student_id', 'student_id');
     }
 
+    public function consultation()
+    {
+        return $this->belongsTo(StudentConsultation::class, 'student_id', 'student_id');
+    }
+
+    //same studentconsultation and consultation (para lang d na mag rename sa vue)
+    
     public function studentdental()
     {
         return $this->hasMany(StudentDental::class, 'dentalpatient_id', 'student_id');
